@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[45,)"
+license="MIT"
+
+[[mods]]
+modId="lolmcv"
+version="1.0-1.19.4"
+displayName="More Chest Variants"
+logoFile="examplemod.png"
+authors="LieOnLion"
+
+description='''
+'''
+
+[[dependencies.examplemod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.4,1.20)"
+    ordering="NONE"
+    side="BOTH"

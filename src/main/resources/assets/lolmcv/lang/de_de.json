@@ -1,0 +1,25 @@
+{
+  "block.minecraft.chest": "Eichen-Truhe",
+
+  "block.lolmcv.spruce_chest": "Fichte-Truhe",
+  "block.lolmcv.birch_chest": "Birke-Truhe",
+  "block.lolmcv.jungle_chest": "Dschungeltruhe",
+  "block.lolmcv.acacia_chest": "Akazietruhe",
+  "block.lolmcv.dark_oak_chest": "Dunkle Eichetruhe",
+  "block.lolmcv.mangrove_chest": "Mangróvetruhe",
+  "block.lolmcv.cherry_chest": "Kirschetruhe",
+  "block.lolmcv.bamboo_chest": "Bámbustruhe",
+  "block.lolmcv.crimson_chest": "Karmesintruhe",
+  "block.lolmcv.warped_chest": "Verzogentruhe",
+
+  "block.lolmcv.fir_chest": "Fir truhe",
+  "block.lolmcv.redwood_chest": "RedWood truhe",
+  "block.lolmcv.mahogany_chest": "Mahogany truhe",
+  "block.lolmcv.jacaranda_chest": "Jacaranda truhe",
+  "block.lolmcv.palm_chest": "Palm truhe",
+  "block.lolmcv.willow_chest": "Willow truhe",
+  "block.lolmcv.dead_chest": "Dead truhe",
+  "block.lolmcv.magic_chest": "Magic truhe",
+  "block.lolmcv.umbran_chest": "Umbran truhe",
+  "block.lolmcv.hellbark_chest": "Hellbark truhe"
+}

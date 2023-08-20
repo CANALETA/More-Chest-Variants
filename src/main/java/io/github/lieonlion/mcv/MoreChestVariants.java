@@ -11,5 +11,6 @@ public class MoreChestVariants implements ModInitializer {
     @Override
     public void onInitialize() {
         blocksInit.registerBlocks();
+        blockEntityInit.registerBlockEntity();
     }
 }

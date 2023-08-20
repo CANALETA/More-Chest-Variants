@@ -1,5 +1,7 @@
-package io.github.lieonlion.mcv;
+package io.github.lieonlion.mcv.init;
 
+import io.github.lieonlion.mcv.MoreChestVariants;
+import io.github.lieonlion.mcv.block.MoreChestBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;

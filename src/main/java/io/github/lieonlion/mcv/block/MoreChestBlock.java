@@ -1,4 +1,4 @@
-package io.github.lieonlion.mcv;
+package io.github.lieonlion.mcv.block;
 
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;

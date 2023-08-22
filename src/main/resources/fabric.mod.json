@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"io.github.lieonlion.mcv.MoreChestVariants"
+		],
+		"client": [
+			"io.github.lieonlion.mcv.client.MoreChestVariantsClient"
 		]
 	},
 	"depends": {

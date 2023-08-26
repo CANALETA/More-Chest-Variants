@@ -3,6 +3,7 @@ package io.github.lieonlion.mcv.init;
 import io.github.lieonlion.mcv.block.MoreChestBlock;
 import io.github.lieonlion.mcv.block.MoreChestEnum;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -24,48 +25,27 @@ public class blocksInit {
     public final static MoreChestBlock BAMBOO_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.BAMBOO);
     public final static MoreChestBlock CRIMSON_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.CRIMSON);
     public final static MoreChestBlock WARPED_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.WARPED);
-    public final static MoreChestBlock FIR_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.FIR);
-    public final static MoreChestBlock REDWOOD_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.REDWOOD);
-    public final static MoreChestBlock MAHOGANY_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.MAHOGANY);
-    public final static MoreChestBlock JACARANDA_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.JACARANDA);
-    public final static MoreChestBlock PALM_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.PALM);
-    public final static MoreChestBlock WILLOW_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.WILLOW);
-    public final static MoreChestBlock DEAD_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.DEAD);
-    public final static MoreChestBlock MAGIC_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.MAGIC);
-    public final static MoreChestBlock UMBRAN_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.UMBRAN);
-    public final static MoreChestBlock HELLBARK_CHEST = new MoreChestBlock(AbstractBlock.Settings.copy(Blocks.CHEST), MoreChestEnum.HELLBARK);
 
-    public static void registerBlock(Identifier id, Block block){
+    public static void registerBlock(Identifier id, Block block, boolean canBurn){
         Registry.register(Registries.BLOCK, id, block);
-        registerBlockItem(id, block);
-    }
-
-    public static void registerBlockItem(Identifier id, Block block){
-        Item item = Registry.register(Registries.ITEM, id, new BlockItem(block, (id.equals(MoreChestEnum.SPRUCE.getId()) ? new Item.Settings() :new Item.Settings())));
+        Item item = Registry.register(Registries.ITEM, id, new BlockItem(block, (new Item.Settings())));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> entries.add(item));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> entries.add(item));
+
+        if (canBurn)
+            FuelRegistry.INSTANCE.add(block, 300);
     }
 
     public static void registerBlocks(){
-        registerBlock(MoreChestEnum.SPRUCE.getId(), SPRUCE_CHEST);
-        registerBlock(MoreChestEnum.BIRCH.getId(), BIRCH_CHEST);
-        registerBlock(MoreChestEnum.JUNGLE.getId(), JUNGLE_CHEST);
-        registerBlock(MoreChestEnum.ACACIA.getId(), ACACIA_CHEST);
-        registerBlock(MoreChestEnum.DARK_OAK.getId(), DARK_OAK_CHEST);
-        registerBlock(MoreChestEnum.MANGROVE.getId(), MANGROVE_CHEST);
-        registerBlock(MoreChestEnum.CHERRY.getId(), CHERRY_CHEST);
-        registerBlock(MoreChestEnum.BAMBOO.getId(), BAMBOO_CHEST);
-        registerBlock(MoreChestEnum.CRIMSON.getId(), CRIMSON_CHEST);
-        registerBlock(MoreChestEnum.WARPED.getId(), WARPED_CHEST);
-        registerBlock(MoreChestEnum.FIR.getId(), FIR_CHEST);
-        registerBlock(MoreChestEnum.REDWOOD.getId(), REDWOOD_CHEST);
-        registerBlock(MoreChestEnum.MAHOGANY.getId(), MAHOGANY_CHEST);
-        registerBlock(MoreChestEnum.JACARANDA.getId(), JACARANDA_CHEST);
-        registerBlock(MoreChestEnum.PALM.getId(), PALM_CHEST);
-        registerBlock(MoreChestEnum.WILLOW.getId(), WILLOW_CHEST);
-        registerBlock(MoreChestEnum.DEAD.getId(), DEAD_CHEST);
-        registerBlock(MoreChestEnum.MAGIC.getId(), MAGIC_CHEST);
-        registerBlock(MoreChestEnum.UMBRAN.getId(), UMBRAN_CHEST);
-        registerBlock(MoreChestEnum.HELLBARK.getId(), HELLBARK_CHEST);
+        registerBlock(MoreChestEnum.SPRUCE.getId(), SPRUCE_CHEST, true);
+        registerBlock(MoreChestEnum.BIRCH.getId(), BIRCH_CHEST, true);
+        registerBlock(MoreChestEnum.JUNGLE.getId(), JUNGLE_CHEST, true);
+        registerBlock(MoreChestEnum.ACACIA.getId(), ACACIA_CHEST, true);
+        registerBlock(MoreChestEnum.DARK_OAK.getId(), DARK_OAK_CHEST, true);
+        registerBlock(MoreChestEnum.MANGROVE.getId(), MANGROVE_CHEST, true);
+        registerBlock(MoreChestEnum.CHERRY.getId(), CHERRY_CHEST, true);
+        registerBlock(MoreChestEnum.BAMBOO.getId(), BAMBOO_CHEST, true);
+        registerBlock(MoreChestEnum.CRIMSON.getId(), CRIMSON_CHEST, false);
+        registerBlock(MoreChestEnum.WARPED.getId(), WARPED_CHEST, false);
     }
 }

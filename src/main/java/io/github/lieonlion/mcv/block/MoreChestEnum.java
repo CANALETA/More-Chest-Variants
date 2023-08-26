@@ -17,17 +17,7 @@ public enum MoreChestEnum {
     CHERRY,
     BAMBOO,
     CRIMSON,
-    WARPED,
-    FIR,
-    REDWOOD,
-    MAHOGANY,
-    JACARANDA,
-    PALM,
-    WILLOW,
-    DEAD,
-    MAGIC,
-    UMBRAN,
-    HELLBARK;
+    WARPED;
 
     public static final MoreChestEnum[] VALUES = values();
 
@@ -47,16 +37,6 @@ public enum MoreChestEnum {
             case BAMBOO -> blockEntityInit.BAMBOO_CHEST;
             case CRIMSON -> blockEntityInit.CRIMSON_CHEST;
             case WARPED -> blockEntityInit.WARPED_CHEST;
-            case FIR -> blockEntityInit.FIR_CHEST;
-            case REDWOOD -> blockEntityInit.REDWOOD_CHEST;
-            case MAHOGANY -> blockEntityInit.MAHOGANY_CHEST;
-            case JACARANDA -> blockEntityInit.JACARANDA_CHEST;
-            case PALM -> blockEntityInit.PALM_CHEST;
-            case WILLOW -> blockEntityInit.WILLOW_CHEST;
-            case DEAD -> blockEntityInit.DEAD_CHEST;
-            case MAGIC -> blockEntityInit.MAGIC_CHEST;
-            case UMBRAN -> blockEntityInit.UMBRAN_CHEST;
-            case HELLBARK -> blockEntityInit.HELLBARK_CHEST;
         };
     }
 

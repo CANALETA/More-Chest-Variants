@@ -19,16 +19,6 @@ public class blockEntityInit {
     public static BlockEntityType<MoreChestBlockEntity> BAMBOO_CHEST;
     public static BlockEntityType<MoreChestBlockEntity> CRIMSON_CHEST;
     public static BlockEntityType<MoreChestBlockEntity> WARPED_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> FIR_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> REDWOOD_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> MAHOGANY_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> JACARANDA_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> PALM_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> WILLOW_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> DEAD_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> MAGIC_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> UMBRAN_CHEST;
-    public static BlockEntityType<MoreChestBlockEntity> HELLBARK_CHEST;
 
     public static void registerBlockEntities() {
         SPRUCE_CHEST = register(MoreChestEnum.SPRUCE, blocksInit.SPRUCE_CHEST);
@@ -41,16 +31,6 @@ public class blockEntityInit {
         BAMBOO_CHEST = register(MoreChestEnum.BAMBOO, blocksInit.BAMBOO_CHEST);
         CRIMSON_CHEST = register(MoreChestEnum.CRIMSON, blocksInit.CRIMSON_CHEST);
         WARPED_CHEST = register(MoreChestEnum.WARPED, blocksInit.WARPED_CHEST);
-        FIR_CHEST = register(MoreChestEnum.FIR, blocksInit.FIR_CHEST);
-        REDWOOD_CHEST = register(MoreChestEnum.REDWOOD, blocksInit.REDWOOD_CHEST);
-        MAHOGANY_CHEST = register(MoreChestEnum.MAHOGANY, blocksInit.MAHOGANY_CHEST);
-        JACARANDA_CHEST = register(MoreChestEnum.JACARANDA, blocksInit.JACARANDA_CHEST);
-        PALM_CHEST = register(MoreChestEnum.PALM, blocksInit.PALM_CHEST);
-        WILLOW_CHEST = register(MoreChestEnum.WILLOW, blocksInit.WILLOW_CHEST);
-        DEAD_CHEST = register(MoreChestEnum.DEAD, blocksInit.DEAD_CHEST);
-        MAGIC_CHEST = register(MoreChestEnum.MAGIC, blocksInit.MAGIC_CHEST);
-        UMBRAN_CHEST = register(MoreChestEnum.UMBRAN, blocksInit.UMBRAN_CHEST);
-        HELLBARK_CHEST = register(MoreChestEnum.HELLBARK, blocksInit.HELLBARK_CHEST);
     }
 
     private static BlockEntityType<MoreChestBlockEntity> register(MoreChestEnum type, MoreChestBlock... block){

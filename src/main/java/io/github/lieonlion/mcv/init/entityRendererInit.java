@@ -15,15 +15,5 @@ public class entityRendererInit {
         BlockEntityRendererRegistry.register(blockEntityInit.BAMBOO_CHEST, MoreChestRenderer::new);
         BlockEntityRendererRegistry.register(blockEntityInit.CRIMSON_CHEST, MoreChestRenderer::new);
         BlockEntityRendererRegistry.register(blockEntityInit.WARPED_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.FIR_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.REDWOOD_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.MAHOGANY_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.JACARANDA_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.PALM_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.WILLOW_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.DEAD_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.MAGIC_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.UMBRAN_CHEST, MoreChestRenderer::new);
-        BlockEntityRendererRegistry.register(blockEntityInit.HELLBARK_CHEST, MoreChestRenderer::new);
     }
 }

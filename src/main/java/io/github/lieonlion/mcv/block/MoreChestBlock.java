@@ -1,10 +1,7 @@
 package io.github.lieonlion.mcv.block;
 
 import io.github.lieonlion.mcv.init.blockEntityInit;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ChestBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
@@ -12,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 public class MoreChestBlock extends ChestBlock {
     public final MoreChestEnum chestType;
 
-    public MoreChestBlock(Settings settings, MoreChestEnum chestType) {
-        super(Settings.copy(Blocks.CHEST), chestType::getBlockEntityType);
+    public MoreChestBlock(MoreChestEnum chestType, MapColor colour) {
+        super(Settings.copy(Blocks.CHEST).mapColor(colour), chestType::getBlockEntityType);
         this.chestType = chestType;
     }
 

@@ -28,6 +28,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.World;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 
@@ -45,6 +46,7 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
     private final ModelPart doubleChestRightLid;
     private final ModelPart doubleChestRightBase;
     private final ModelPart doubleChestRightLatch;
+    private boolean christmas;
 
     static {
         for (MoreChestEnum type : MoreChestEnum.VALUES) {
@@ -56,6 +58,11 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
 
     public MoreChestRenderer(BlockEntityRendererFactory.Context context) {
         super(context);
+        Calendar calendar = Calendar.getInstance();
+        if (calendar.get(2) + 1 == 12 && calendar.get(5) >= 24 && calendar.get(5) <= 26) {
+            this.christmas = true;
+        }
+
         ModelPart modelPart = context.getLayerModelPart(EntityModelLayers.CHEST);
         this.singleChestBase = modelPart.getChild("bottom");
         this.singleChestLid = modelPart.getChild("lid");
@@ -71,27 +78,30 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
     }
 
     private static SpriteIdentifier getChestMaterial(String path) {
-        return new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE, new Identifier(MoreChestVariants.MODID, "entity/chest/" + path)) {
-        };
+        return new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE, new Identifier(MoreChestVariants.MODID, "entity/chest/" + path)) {};
     }
 
-    private static SpriteIdentifier getChestMaterial(MoreChestBlockEntity tile, ChestType type) {
-        switch(type) {
-            case LEFT:
-                return left[tile.getChestType().ordinal()];
-            case RIGHT:
-                return right[tile.getChestType().ordinal()];
-            case SINGLE:
-            default:
-                return single[tile.getChestType().ordinal()];
+    private SpriteIdentifier getChestMaterial(MoreChestBlockEntity tile, ChestType type) {
+        if (this.christmas) {
+            return switch (type) {
+                case LEFT -> TexturedRenderLayers.CHRISTMAS_LEFT;
+                case RIGHT -> TexturedRenderLayers.TRAPPED_RIGHT;
+                default -> TexturedRenderLayers.CHRISTMAS;
+            };
+        } else {
+            return switch (type) {
+                case LEFT -> left[tile.getChestType().ordinal()];
+                case RIGHT -> right[tile.getChestType().ordinal()];
+                default -> single[tile.getChestType().ordinal()];
+            };
         }
     }
 
     public void render(MoreChestBlockEntity blockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
         World world = blockEntity.getWorld();
         boolean bl = world != null;
-        BlockState blockState = bl ? blockEntity.getCachedState() : (BlockState)Blocks.CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
-        ChestType chestType = blockState.contains(ChestBlock.CHEST_TYPE) ? (ChestType)blockState.get(ChestBlock.CHEST_TYPE) : ChestType.SINGLE;
+        BlockState blockState = bl ? blockEntity.getCachedState() : Blocks.CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
+        ChestType chestType = blockState.contains(ChestBlock.CHEST_TYPE) ? blockState.get(ChestBlock.CHEST_TYPE) : ChestType.SINGLE;
         Block block = blockState.getBlock();
         if (block instanceof MoreChestBlock abstractChestBlock) {
             boolean bl2 = chestType != ChestType.SINGLE;
@@ -107,7 +117,7 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
                 propertySource = DoubleBlockProperties.PropertyRetriever::getFallback;
             }
 
-            float h = ((Float2FloatFunction)propertySource.apply(ChestBlock.getAnimationProgressRetriever((LidOpenable)blockEntity))).get(f);
+            float h = propertySource.apply(ChestBlock.getAnimationProgressRetriever(blockEntity)).get(f);
             h = 1.0F - h;
             h = 1.0F - h * h * h;
             int k = ((Int2IntFunction)propertySource.apply(new LightmapCoordinatesRetriever())).applyAsInt(i);

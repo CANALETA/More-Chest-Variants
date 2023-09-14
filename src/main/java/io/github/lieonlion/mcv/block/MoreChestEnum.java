@@ -41,8 +41,6 @@ public enum MoreChestEnum {
     }
 
     public MoreChestBlockEntity getBlockEntity(BlockPos pos, BlockState state) {
-        return switch (this) {
-            default -> new MoreChestBlockEntity(this, pos, state);
-        };
+        return new MoreChestBlockEntity(this, pos, state);
     }
 }

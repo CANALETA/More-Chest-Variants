@@ -1,5 +1,7 @@
 {
+    "parent": "lolmcv:block/chests/chest_base",
     "textures": {
+        "texture": "lolmcv:block/chest/warped",
         "particle": "minecraft:block/warped_planks"
     }
 }

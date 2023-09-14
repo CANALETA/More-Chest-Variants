@@ -1,6 +1,3 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "lolmcv:item/crimson_chest"
-    }
+    "parent": "lolmcv:block/crimson_chest"
 }

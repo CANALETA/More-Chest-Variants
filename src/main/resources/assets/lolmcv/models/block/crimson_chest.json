@@ -1,5 +1,7 @@
 {
+    "parent": "lolmcv:block/chests/chest_base",
     "textures": {
+        "texture": "lolmcv:block/chest/crimson",
         "particle": "minecraft:block/crimson_planks"
     }
 }

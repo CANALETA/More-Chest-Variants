@@ -4,13 +4,11 @@ import io.github.lieonlion.mcv.MoreChestVariants;
 import io.github.lieonlion.mcv.block.MoreChestBlock;
 import io.github.lieonlion.mcv.block.MoreChestBlockEntity;
 import io.github.lieonlion.mcv.block.MoreChestEnum;
-import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.block.entity.LidOpenable;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
@@ -47,6 +45,7 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
     private final ModelPart doubleChestRightBase;
     private final ModelPart doubleChestRightLatch;
     private boolean christmas;
+    private boolean starwarsday;
 
     static {
         for (MoreChestEnum type : MoreChestEnum.VALUES) {
@@ -61,6 +60,9 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
         Calendar calendar = Calendar.getInstance();
         if (calendar.get(2) + 1 == 12 && calendar.get(5) >= 24 && calendar.get(5) <= 26) {
             this.christmas = true;
+        }
+        if (calendar.get(2) + 1 == 5 && calendar.get(5) >= 3 && calendar.get(5) <= 5) {
+            this.starwarsday = true;
         }
 
         ModelPart modelPart = context.getLayerModelPart(EntityModelLayers.CHEST);
@@ -81,19 +83,21 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
         return new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE, new Identifier(MoreChestVariants.MODID, "entity/chest/" + path)) {};
     }
 
+    public static SpriteIdentifier chooseMaterial(ChestType type, SpriteIdentifier left, SpriteIdentifier right, SpriteIdentifier single) {
+        return switch (type) {
+            case LEFT -> left;
+            case RIGHT -> right;
+            default -> single;
+        };
+    }
+
     private SpriteIdentifier getChestMaterial(MoreChestBlockEntity tile, ChestType type) {
         if (this.christmas) {
-            return switch (type) {
-                case LEFT -> TexturedRenderLayers.CHRISTMAS_LEFT;
-                case RIGHT -> TexturedRenderLayers.TRAPPED_RIGHT;
-                default -> TexturedRenderLayers.CHRISTMAS;
-            };
+            return TexturedRenderLayers.getChestTextureId(tile, type, this.christmas);
+        } else if(this.starwarsday) {
+            return chooseMaterial(type, getChestMaterial("starwars_left"), getChestMaterial("starwars_right"), getChestMaterial("starwars"));
         } else {
-            return switch (type) {
-                case LEFT -> left[tile.getChestType().ordinal()];
-                case RIGHT -> right[tile.getChestType().ordinal()];
-                default -> single[tile.getChestType().ordinal()];
-            };
+            return chooseMaterial(type, left[tile.getChestType().ordinal()], right[tile.getChestType().ordinal()], single[tile.getChestType().ordinal()]);
         }
     }
 
@@ -132,7 +136,6 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
             } else {
                 this.render(matrixStack, vertexConsumer, this.singleChestLid, this.singleChestLatch, this.singleChestBase, h, k, j);
             }
-
             matrixStack.pop();
         }
     }

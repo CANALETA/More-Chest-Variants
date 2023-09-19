@@ -1,7 +1,7 @@
 {
     "parent": "lolmcv:block/chests/chest_base",
     "textures": {
-        "texture": "lolmcv:block/chest/birch",
+        "wood_type": "lolmcv:entity/chest/birch",
         "particle": "minecraft:block/birch_planks"
     }
 }

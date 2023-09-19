@@ -1,9 +1,8 @@
 package io.github.lieonlion.mcv.block;
 
 import io.github.lieonlion.mcv.MoreChestVariants;
-import io.github.lieonlion.mcv.init.blockEntityInit;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.MapColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
@@ -25,18 +24,18 @@ public enum MoreChestEnum {
         return new Identifier(MoreChestVariants.MODID, this.name().toLowerCase() + "_chest");
     }
 
-    public BlockEntityType<? extends MoreChestBlockEntity> getBlockEntityType() {
+    public MapColor getMapColour() {
         return switch (this) {
-            case SPRUCE -> blockEntityInit.SPRUCE_CHEST;
-            case BIRCH -> blockEntityInit.BIRCH_CHEST;
-            case JUNGLE -> blockEntityInit.JUNGLE_CHEST;
-            case ACACIA -> blockEntityInit.ACACIA_CHEST;
-            case DARK_OAK -> blockEntityInit.DARK_OAK_CHEST;
-            case MANGROVE -> blockEntityInit.MANGROVE_CHEST;
-            case CHERRY -> blockEntityInit.CHERRY_CHEST;
-            case BAMBOO -> blockEntityInit.BAMBOO_CHEST;
-            case CRIMSON -> blockEntityInit.CRIMSON_CHEST;
-            case WARPED -> blockEntityInit.WARPED_CHEST;
+            case SPRUCE -> MapColor.SPRUCE_BROWN;
+            case BIRCH -> MapColor.PALE_YELLOW;
+            case JUNGLE -> MapColor.DIRT_BROWN;
+            case ACACIA -> MapColor.ORANGE;
+            case DARK_OAK -> MapColor.BROWN;
+            case MANGROVE -> MapColor.RED;
+            case CHERRY -> MapColor.TERRACOTTA_WHITE;
+            case BAMBOO -> MapColor.YELLOW;
+            case CRIMSON -> MapColor.DULL_PINK;
+            case WARPED -> MapColor.DARK_AQUA;
         };
     }
 

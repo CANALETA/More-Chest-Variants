@@ -10,7 +10,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.enums.ChestType;
-import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.VertexConsumer;
@@ -79,7 +79,7 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
         this.doubleChestRightLatch = modelPart3.getChild("lock");
     }
 
-    private static SpriteIdentifier getChestMaterial(String path) {
+    public static SpriteIdentifier getChestMaterial(String path) {
         return new SpriteIdentifier(TexturedRenderLayers.CHEST_ATLAS_TEXTURE, new Identifier(MoreChestVariants.MODID, "entity/chest/" + path)) {};
     }
 
@@ -107,16 +107,16 @@ public class MoreChestRenderer extends ChestBlockEntityRenderer<MoreChestBlockEn
         BlockState blockState = bl ? blockEntity.getCachedState() : Blocks.CHEST.getDefaultState().with(ChestBlock.FACING, Direction.SOUTH);
         ChestType chestType = blockState.contains(ChestBlock.CHEST_TYPE) ? blockState.get(ChestBlock.CHEST_TYPE) : ChestType.SINGLE;
         Block block = blockState.getBlock();
-        if (block instanceof MoreChestBlock abstractChestBlock) {
+        if (block instanceof MoreChestBlock moreChestBlock) {
             boolean bl2 = chestType != ChestType.SINGLE;
             matrixStack.push();
-            float g = ((Direction)blockState.get(ChestBlock.FACING)).asRotation();
+            float g = blockState.get(ChestBlock.FACING).asRotation();
             matrixStack.translate(0.5F, 0.5F, 0.5F);
             matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-g));
             matrixStack.translate(-0.5F, -0.5F, -0.5F);
             DoubleBlockProperties.PropertySource<? extends ChestBlockEntity> propertySource;
             if (bl) {
-                propertySource = abstractChestBlock.getBlockEntitySource(blockState, world, blockEntity.getPos(), true);
+                propertySource = moreChestBlock.getBlockEntitySource(blockState, world, blockEntity.getPos(), true);
             } else {
                 propertySource = DoubleBlockProperties.PropertyRetriever::getFallback;
             }

@@ -17,6 +17,4 @@ public class MoreChestBlock extends ChestBlock {
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return this.chestType.getBlockEntity(pos, state);
     }
-
-    public MoreChestEnum getType(){return chestType;}
 }
